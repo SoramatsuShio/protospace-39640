@@ -5,10 +5,6 @@ class PrototypesController < ApplicationController
   end
 
 
-  def new
-    @prototype = Prototype.new
-  end
-
   def show
     @prototype = Prototype.find(params[:id])
     @comment = Comment.new
@@ -20,6 +16,8 @@ class PrototypesController < ApplicationController
     prototype.destroy
     redirect_to root_path
   end
+
+
 
   def edit
     @prototype = Prototype.find(params[:id])
@@ -37,10 +35,15 @@ class PrototypesController < ApplicationController
     end
   end
 
+  
+
+  
+  def new
+    @prototype = Prototype.new
+  end
+
   def create
     Prototype.create(prototype_params)
-    redirect_to '/'
-    
    end
 
   private
