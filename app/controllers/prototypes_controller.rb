@@ -43,7 +43,16 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    Prototype.create(prototype_params)
+    @prototype = Prototype.new(prototype_params)
+
+  if @prototype.save
+    # 保存が成功した場合の処理（例えば、作成したプロトタイプの詳細ページへリダイレクト）
+    redirect_to '/'
+  else
+    # 保存が失敗した場合の処理（例えば、新規プロトタイプ投稿画面を再表示）
+    render :new
+  end
+
    end
 
   private
