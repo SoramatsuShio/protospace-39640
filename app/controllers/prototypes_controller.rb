@@ -1,5 +1,8 @@
 class PrototypesController < ApplicationController
 
+
+
+  
   def index
     @prototypes = Prototype.includes(:user)
   end
@@ -21,6 +24,11 @@ class PrototypesController < ApplicationController
 
   def edit
     @prototype = Prototype.find(params[:id])
+    
+    if current_user != @prototype.user
+      redirect_to root_path, alert: "You are not authorized to edit this prototype."
+    end
+
   end
 
   def update
